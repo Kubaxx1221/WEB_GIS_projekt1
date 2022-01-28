@@ -4,40 +4,51 @@
     <meta charset="UTF-8">
     <title>Lotniska Polska</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.22/"></script>
+
 
 </head>
 <body>
-    <div>
+    <div class="title">
         <h2>Lotniska </h2>
         <img src="./img/samolot.jpg">
     </div>
 
-    <div id="map"></div>
+    
 
-    <div>
-        <div id="img1">
-            <button id="button1"><img src=./img/Lotnisko-Chopina.jpg></button>
+    <div class="mapa">
+        <div class="links">
+            <div id="img1">
+                <button id="button1"><img src=./img/Lotnisko-Chopina.jpg></button>
+            </div>
+             <div id="img1">
+                <button id="button2"><img src=./img/lotnisko-poznan.jpg></button>
+            </div>
         </div>
-
+        <div id="map"></div>
     </div>
 
-    <div>
-        <p>Lotnisko – wydzielony obszar na lądzie, wodzie lub innej powierzchni, w całości lub w części p
-            rzeznaczony do wykonywania startów, lądowań i naziemnego lub nawodnego ruchu statków powietrznych,
-            wraz ze znajdującymi się w jego granicach obiektami i urządzeniami budowlanymi o charakterze trwałym,
-            wpisany do rejestru lotnisk. Ich wyposażenie zróżnicowane jest w zależności od liczby
-            odprawianych pasażerów i przeładowywanych towarów. Lotniska oznaczane są trzyliterowym kodem
-            IATA oraz czteroliterowym kodem ICAO.
+    <div class="opis">
+        <div class="tekst">
             <br>
-            Lotnisko oraz jego strefa ochronna zajmują znaczne obszary,
-            wyłączając z użytkowania znaczny areał gruntów. Zamieszkiwanie w jego pobliżu może być szkodliwe
-            dla zdrowia z powodu zanieczyszczeń powietrza oraz hałasu.
             <br>
-            Zgodnie z rejestrem lotnisk cywilnych Urzędu Lotnictwa Cywilnego w 2021 r. w Polsce istnieje 65
-            takich obiektów. W naszym raporcie zajmujemy się jedynie lotniskami cywilnymi użytkowymi
-            certyfikowanymi, a takich jest tylko 14.
-        </p>
-
+            <p>Lotnisko wydzielony obszar na lądzie, wodzie lub innej powierzchni, w całości lub w części p
+                rzeznaczony do wykonywania startów, lądowań i naziemnego lub nawodnego ruchu statków powietrznych,
+                wraz ze znajdującymi się w jego granicach obiektami i urządzeniami budowlanymi o charakterze trwałym,
+                wpisany do rejestru lotnisk. Ich wyposażenie zróżnicowane jest w zależności od liczby
+                odprawianych pasażerów i przeładowywanych towarów. Lotniska oznaczane są trzyliterowym kodem
+                IATA oraz czteroliterowym kodem ICAO.
+                <br>
+                Lotnisko oraz jego strefa ochronna zajmują znaczne obszary,
+                wyłączając z użytkowania znaczny areał gruntów. Zamieszkiwanie w jego pobliżu może być szkodliwe
+                dla zdrowia z powodu zanieczyszczeń powietrza oraz hałasu.
+                <br>
+                Zgodnie z rejestrem lotnisk cywilnych Urzędu Lotnictwa Cywilnego w 2021 r. w Polsce istnieje 65
+                takich obiektów. W naszym raporcie zajmujemy się jedynie lotniskami cywilnymi użytkowymi
+                certyfikowanymi, a takich jest tylko 14.
+            </p>
+        </div>
     </div>
 
 </body>
