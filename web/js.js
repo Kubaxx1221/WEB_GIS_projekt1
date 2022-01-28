@@ -7,9 +7,9 @@ require([
   'esri/widgets/Expand',
   'esri/widgets/Legend',
   "esri/widgets/LayerList",
+  "esri/widgets/Search",
   "esri/widgets/DistanceMeasurement2D",
   "esri/widgets/AreaMeasurement2D",
-  "esri/widgets/Search"
 
 ], (Map, MapView, FeatureLayer, BasemapGallery, Expand, Legend, LayerList,DistanceMeasurement2D,
   AreaMeasurement2D, Search)=>{
@@ -22,38 +22,59 @@ require([
   const view = new MapView({
     map: map1,
     container: "map",
-    zoom: 10,
-    center: [20, 50],
+    center: [19.252482, 52.065221],
+    zoom: 6.5
   });
-  console.log('robienie mapy');
+
+  const Feature = new FeatureLayer({
+    url:'https://services1.arcgis.com/mQcAehnytds8jMvo/arcgis/rest/services/lotniska_ms/FeatureServer'
+  });
+  map1.add(Feature);
+
+  const search = new Search({
+    view: view
+  });
+  view.ui.add(search, {position: "top-right"});
+
+  const layerlist = new LayerList({
+    view: view
+  });
+  view.ui.add(layerlist, {position: "bottom-right"});
+  
+  const base = new BasemapGallery({
+    view: view
+  });
+  const expand = new Expand({
+    view: view,
+    content: base
+  });
+  view.ui.add(expand,{position: 'top-right'});
+
+  const  legend = new Legend({
+    view: view
+  })
+  view.ui.add(legend,{position: 'bottom-left'});
+
 
 
   let button1 = document.getElementById('button1');  //warszawa
   let button2 = document.getElementById('button2');  //poznan
 
   button1.addEventListener('click', function(){
-      let opts = {
-      duration: 2000
-      };
       view.goTo({
         target: [20.968673, 52.166083],
-        zoom: 10
-  }, opts);
+        zoom: 13
+  });
 
   });
 
   button2.addEventListener('click', function(){
-      let opts = {
-      duration: 2000
-      };
       view.goTo({
         target: [16.826714, 52.419720],
-        zoom: 10
-  }, opts);
-
+        zoom: 13
   });
 
-
+  });
 })
 
 
