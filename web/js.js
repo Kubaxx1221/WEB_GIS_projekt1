@@ -11,9 +11,8 @@ require([
   "esri/widgets/DistanceMeasurement2D",
   "esri/widgets/AreaMeasurement2D",
 
-], (Map, MapView, FeatureLayer, BasemapGallery, Expand, Legend, LayerList,DistanceMeasurement2D,
-  AreaMeasurement2D, Search)=>{
-
+], (Map, MapView, FeatureLayer, BasemapGallery, Expand, Legend, LayerList, Search, DistanceMeasurement2D,
+  AreaMeasurement2D)=>{
 
   const map1 = new Map({
     basemap: "topo-vector",
@@ -28,7 +27,9 @@ require([
 
   const Feature = new FeatureLayer({
     url:'https://services1.arcgis.com/mQcAehnytds8jMvo/arcgis/rest/services/lotniska_ms/FeatureServer'
-  });
+    });
+
+
   map1.add(Feature);
 
   const search = new Search({
@@ -54,6 +55,78 @@ require([
     view: view
   })
   view.ui.add(legend,{position: 'bottom-left'});
+
+  let activeWidget = null;
+  // kod js do aktywacji przyciskow miary
+  view.ui.add("topbar", "top-right");
+
+  document
+    .getElementById("distanceButton")
+    .addEventListener("click", function () {
+      setActiveWidget(null);
+      if (!this.classList.contains("active")) {
+        setActiveWidget("distance");
+      } else {
+        setActiveButton(null);
+      }
+    });
+
+  document
+    .getElementById("areaButton")
+    .addEventListener("click", function () {
+      setActiveWidget(null);
+      if (!this.classList.contains("active")) {
+        setActiveWidget("area");
+      } else {
+        setActiveButton(null);
+      }
+    });
+
+  function setActiveWidget(type) {
+    switch (type) {
+      case "distance":
+        activeWidget = new DistanceMeasurement2D({
+          view: view
+        });
+
+        // skip the initial 'new measurement' button
+        activeWidget.viewModel.start();
+
+        view.ui.add(activeWidget, "top-right");
+        setActiveButton(document.getElementById("distanceButton"));
+        break;
+      case "area":
+        activeWidget = new AreaMeasurement2D({
+          view: view
+        });
+
+        // skip the initial 'new measurement' button
+        activeWidget.viewModel.start();
+
+        view.ui.add(activeWidget, "top-right");
+        setActiveButton(document.getElementById("areaButton"));
+        break;
+      case null:
+        if (activeWidget) {
+          view.ui.remove(activeWidget);
+          activeWidget.destroy();
+          activeWidget = null;
+        }
+        break;
+    }
+  }
+
+  function setActiveButton(selectedButton) {
+    // focus the view to activate keyboard shortcuts for sketching
+    view.focus();
+    var elements = document.getElementsByClassName("active");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].classList.remove("active");
+    }
+    if (selectedButton) {
+      selectedButton.classList.add("active");
+    }};
+
 
 
 
